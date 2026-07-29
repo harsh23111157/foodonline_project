@@ -1,0 +1,15 @@
+{% if messages %}
+  {% for message in messages %}
+    <!-- Replaced alert-success with {{ message.tags }} -->
+    <div class="alert {{ message.tags }} alert-dismissible fade show show-notification" role="alert">
+       
+       <!-- 1. Your message text -->
+       <strong>{{ message }}</strong>
+
+       <!-- 2. The universal fix for the close button -->
+       <button type="button" class="close btn-close-legacy" data-bs-dismiss="alert" data-dismiss="alert" aria-label="Close" style="position: absolute; top: 0; right: 0; padding: 0.75rem 1.25rem; background: none; border: none; font-size: 1.5rem; line-height: 1; color: #000; opacity: 0.5; cursor: pointer;">
+          <span aria-hidden="true">&times;</span>
+       </button>
+    </div>
+  {% endfor %}
+{% endif %}
