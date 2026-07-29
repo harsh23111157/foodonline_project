@@ -9,7 +9,7 @@
 .show-notification{
   position: fixed;
   bottom: 100%;
-  right: 20%;
+  right: 10%;
   animation-name: show-toast;
   animation-duration: 9s;
   z-index: 99;
