@@ -211,7 +211,7 @@ def forgot_password(request):
 
       #send reste password email
       mail_subject='reset your password'
-      emai_template='accounts/email/reset_password.html'
+      emai_template='accounts/email/reset_password_email.html'
       send_verification_email(request,user,mail_subject,emai_template)
 
       messages.success(request,'password reset link has been sent to your email adress')
@@ -219,9 +219,6 @@ def forgot_password(request):
     else:
       messages.error(request,'account does not exist')
       return redirect('forgot_password')
-
-
-
   return render(request,'accounts/forgot_password.html')
 
 
@@ -236,9 +233,35 @@ def reset_password_validate(request,uid64,token):
     request.session['uid']=uid
     messages.info(request,'please reset your password')
     return redirect('reset_password')
+  else:
+    messages.error(request,'this link has been expired')
+    return redirect('myAccount')
 
-  return 
+   
 
 
 def reset_password(request):
-  return render(request,'accounts/reset_password.html')
+  if request.method == 'POST':
+    password=request.POST['password']
+    confirm_password=request.POST['confirm_password']
+
+    if password == confirm_password:
+      pk=request.session.get('uid')
+      user=User.objects.get(pk=pk)
+      user.set_password(password)
+      user.is_active=True
+      user.save()
+      messages.success(request,'password reset sucessful')
+      return redirect('login')
+    else:
+      messages.error(request,'password dont match')
+      return redirect('reset_password')
+  return render(request,'accounts/reset_password.html')  
+
+
+      
+  
+
+
+
+
