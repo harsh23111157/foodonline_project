@@ -1,0 +1,10 @@
+{% autoescape off %}
+Hi {{ user.first_name }},
+
+{% if is_approved %}
+Your vendor account has been approved.
+{% else %}
+Your vendor account has not been approved.
+{% endif %}
+
+{% endautoescape %}
