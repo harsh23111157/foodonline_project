@@ -1,4 +1,6 @@
 from vendor.models import Vendor
+import os
+from django.conf import settings
 
 def get_vendor(request):
   try:
@@ -6,3 +8,7 @@ def get_vendor(request):
   except:
     vendor=None 
   return dict(vendor=vendor)
+
+
+
+

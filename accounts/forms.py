@@ -31,6 +31,14 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ("profile_picture","cover_photo","address","country","state","city","pin_code","latitude","longitude",)
+        widgets = {
+            "address": forms.TextInput(attrs={
+                "id": "address",
+                "class": "form-control",
+                "autocomplete": "off",
+                "placeholder": "Search your restaurant address"
+            })
+        }
 
 
     def __init__(self,*args,**kwargs):
