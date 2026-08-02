@@ -127,8 +127,6 @@ def registerVendor(request):
     else:
       print('invalid form')
       print(form.errors)
-
-    
   else:
       form=UserForm()
       v_form=VendorForm()
